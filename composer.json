@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../framework"
+    }
+  ],
+  "require": {
+    "zoyalib/framework": "dev-main"
+  }
+}
