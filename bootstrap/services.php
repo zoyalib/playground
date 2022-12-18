@@ -2,4 +2,7 @@
 
 declare(strict_types=1);
 
-return [];
+return [
+    \App\Providers\RoutingProvider::class,
+    \App\Providers\HttpProvider::class,
+];

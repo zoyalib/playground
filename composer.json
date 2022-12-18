@@ -10,7 +10,8 @@
     "zoyalib/framework": "dev-main",
     "php-di/php-di": "^6.4",
     "spiral/roadrunner": "^2.12",
-    "nyholm/psr7": "^1.5"
+    "nyholm/psr7": "^1.5",
+    "nikic/fast-route": "^1.3"
   },
   "autoload": {
     "psr-4": {

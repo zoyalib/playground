@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http;
 
-use App\Http\Middleware\QuoteMiddleware;
+use App\Http\Middleware\DispatchRequestMiddleware;
+use App\Http\Middleware\MatchRouteMiddleware;
 use Psr\Container\ContainerInterface;
 use Zoya\Http\AbstractKernel;
 
@@ -24,7 +25,8 @@ final class Kernel extends AbstractKernel
     protected function getPipeline(): array
     {
         return [
-            $this->container->get(QuoteMiddleware::class),
+            $this->container->get(MatchRouteMiddleware::class),
+            $this->container->get(DispatchRequestMiddleware::class),
         ];
     }
 }

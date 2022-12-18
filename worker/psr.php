@@ -35,6 +35,6 @@ while (true) {
 
         $kernel->terminate($request, $response);
     } catch (Throwable $e) {
-        $psr7->respond(new Response(500, [], $e->getMessage()));
+        $psr7->respond(new Response(500, [], $e->getMessage() . PHP_EOL . $e->getTraceAsString()));
     }
 }
