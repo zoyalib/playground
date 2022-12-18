@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use Nyholm\Psr7\Response;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -17,17 +15,12 @@ final class DispatchRequestMiddleware implements MiddlewareInterface
     /** @var \Zoya\Http\Dispatcher\Dispatcher */
     private Dispatcher $dispatcher;
 
-    /** @var \Psr\Container\ContainerInterface */
-    private ContainerInterface $container;
-
     /**
-     * @param  \Zoya\Http\Dispatcher\Dispatcher   $dispatcher
-     * @param  \Psr\Container\ContainerInterface  $container
+     * @param  \Zoya\Http\Dispatcher\Dispatcher  $dispatcher
      */
-    public function __construct(Dispatcher $dispatcher, ContainerInterface $container)
+    public function __construct(Dispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
-        $this->container  = $container;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

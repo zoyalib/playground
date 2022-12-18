@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Http\Controller\Index\IndexAction;
 use DI\ContainerBuilder;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
@@ -27,6 +26,10 @@ final class RoutingProvider
      */
     private function addRoutes(RouteCollector $r): void
     {
-        $r->addRoute('GET', '/', IndexAction::class);
+        $r->get('/', 'App\Http\Controller\Index\IndexAction');
+
+        $r->addGroup('/auth', function (RouteCollector $r) {
+            $r->post('/register', 'App\Http\Controller\Auth\RegisterAction');
+        });
     }
 }

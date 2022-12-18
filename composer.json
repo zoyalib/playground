@@ -11,7 +11,9 @@
     "php-di/php-di": "^6.4",
     "spiral/roadrunner": "^2.12",
     "nyholm/psr7": "^1.5",
-    "nikic/fast-route": "^1.3"
+    "nikic/fast-route": "^1.3",
+    "symfony/serializer": "^6.2",
+    "symfony/property-access": "^6.2"
   },
   "autoload": {
     "psr-4": {
