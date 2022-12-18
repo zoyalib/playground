@@ -8,6 +8,6 @@ final class Quotes
 {
     public static function getQuote(): string
     {
-        return 'Beauty is a sign of beautiful. - Andy Warhol';
+        return 'Beauty is a sign of intelligence. - Andy Warhol';
     }
 }

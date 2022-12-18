@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Quotes;
+use App\Http\Kernel;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,7 +13,8 @@ $container = require __DIR__ . '/../bootstrap/container.php';
 
 $psrFactory = new Psr17Factory();
 
-$psr7 = new PSR7Worker(\Spiral\RoadRunner\Worker::create(), $psrFactory, $psrFactory, $psrFactory);
+$psr7   = new PSR7Worker(\Spiral\RoadRunner\Worker::create(), $psrFactory, $psrFactory, $psrFactory);
+$kernel = $container->get(Kernel::class);
 
 while (true) {
     try {
@@ -28,8 +29,12 @@ while (true) {
     }
 
     try {
-        $psr7->respond(new Response(200, [], Quotes::getQuote()));
+        $response = $kernel->process($request);
+
+        $psr7->respond($response);
+
+        $kernel->terminate($request, $response);
     } catch (Throwable $e) {
-        $psr7->respond(new Response(500, [], 'Something went wrong'));
+        $psr7->respond(new Response(500, [], $e->getMessage()));
     }
 }
